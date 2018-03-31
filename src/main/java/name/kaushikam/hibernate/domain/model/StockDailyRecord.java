@@ -19,8 +19,8 @@ public class StockDailyRecord implements Serializable {
 
     @Id
     @Column(name = "record_id")
-    @GeneratedValue(generator = "daily_record_sequence", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "daily_record_sequence", initialValue = 1, allocationSize = 1,
+    @GeneratedValue(generator = "dailyRecordSequence", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "dailyRecordSequence", initialValue = 1, allocationSize = 100,
             sequenceName = "daily_record_sequence")
     private Integer recordId;
 

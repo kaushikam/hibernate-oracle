@@ -20,8 +20,8 @@ public class Stock implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "stock_sequence", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "stock_sequence", initialValue = 1, allocationSize = 1,
+    @GeneratedValue(generator = "stockSequence", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "stockSequence", initialValue = 1, allocationSize = 100,
             sequenceName = "stock_sequence")
     private Integer stockId;
 
