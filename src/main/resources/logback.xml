@@ -1,0 +1,43 @@
+<configuration>
+    <property resource="application.properties" />
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>${logging.file}</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!-- daily roll over -->
+            <fileNamePattern>${logging.file}.%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 10 MB-->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%date{dd MMM yyyy;HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{dd MMM yyyy;HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="name.kaushikam.hibernate" level="${logging.application.level}" additivity="false">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="${logging.level}">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
