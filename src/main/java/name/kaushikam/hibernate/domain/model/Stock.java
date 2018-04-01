@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,11 +21,12 @@ import java.util.Set;
 public class Stock implements Serializable {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(generator = "stockSequence", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "stockSequence", initialValue = 1, allocationSize = 100,
-            sequenceName = "stock_sequence")
-    private Integer stockId;
+    @Embedded
+    @GenericGenerator(name = "stock_id_generator",
+            parameters = @Parameter(name = "sequenceName", value = "stock_sequence"),
+            strategy = "name.kaushikam.hibernate.domain.model.StockIdGenerator")
+    @GeneratedValue(generator = "stock_id_generator")
+    private StockId stockId;
 
     @Column(name = "stock_code", nullable = false, unique = true, length = 10)
     private String stockCode;

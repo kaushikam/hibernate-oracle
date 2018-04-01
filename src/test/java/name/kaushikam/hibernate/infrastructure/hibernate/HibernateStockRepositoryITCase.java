@@ -2,10 +2,7 @@ package name.kaushikam.hibernate.infrastructure.hibernate;
 
 import lombok.extern.slf4j.Slf4j;
 import name.kaushikam.hibernate.Application;
-import name.kaushikam.hibernate.domain.model.Stock;
-import name.kaushikam.hibernate.domain.model.StockDailyRecord;
-import name.kaushikam.hibernate.domain.model.StockDetail;
-import name.kaushikam.hibernate.domain.model.StockRepository;
+import name.kaushikam.hibernate.domain.model.*;
 import org.dbunit.IDatabaseTester;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,7 +63,8 @@ public class HibernateStockRepositoryITCase extends AbstractITCase {
         stockDailyRecords.setStock(stock);
         stock.getStockDailyRecords().add(stockDailyRecords);
 
-        stockRepository.save(stock);
+
+        stock = stockRepository.save(stock);
 
         assertNotNull(stock.getStockId());
 

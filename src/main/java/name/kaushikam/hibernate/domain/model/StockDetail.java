@@ -22,7 +22,7 @@ public class StockDetail {
     @GenericGenerator(name = "generator", strategy = "foreign",
     parameters = @Parameter(name = "property", value = "stock"))
     @GeneratedValue(generator = "generator")
-    private Integer stockId;
+    private StockId stockId;
 
     @PrimaryKeyJoinColumn
     @OneToOne(fetch = FetchType.LAZY)
